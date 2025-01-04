@@ -10,12 +10,12 @@ int main(int argc, char *argv[])
   cout.tie(NULL);
 
   int data, query, i , j;
-  vector<int> datas;
   vector<int> S; // 부분합 저장
 
   S.push_back(0);
 
   cin >> data >> query;
+
 
   for ( int i = 0; i < data; i++ )
   {
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
   for( int k  = 0 ; k < query ; k ++ )
   {
     cin >> i >> j;
-    cout << S[j] - S[i-1] << endl;
+    cout << S[j] - S[i-1] << "\n";
   }
 
 }
