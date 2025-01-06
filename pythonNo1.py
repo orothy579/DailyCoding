@@ -39,11 +39,14 @@ def update_student_data():
 # 메뉴 1: 신규 교과목 성적 입력
 def add_subject_score():
     new_scores = []
+    print("6 명의 성적을 입력하세요.")
     for student in studentList:
-        score = int(input(f"{student[0]}의 새로운 과목 점수를 입력하세요: "))
+        score = int(input(f"{student[0]} : "))
         student.insert(-2, score)  # 평균과 등급 앞에 삽입
         new_scores.append(score)
     update_student_data()
+    print("성적 입력 완료")
+
 
 # 메뉴 2: 전체 성적 출력
 def show_all_scores():
@@ -65,10 +68,9 @@ def modify_random_score():
 
 # 메뉴 4: 학생 검색
 def search_student():
-    name = input("검색할 학생의 이름을 입력하세요: ")
+    name = input("학생의 이름을 입력하세요: ")
     for student in studentList:
         if student[0] == name:
-            print("이름\t학부\t성적\t평균\t등급")
             print("\t".join(map(str, student)))
             return
     print("자료에 없는 학생입니다.")
@@ -80,22 +82,39 @@ def calculate_department_avg():
         dept = student[1]
         avg = student[-2]
         departments.setdefault(dept, []).append(avg)
+    print("학부\t학생 수\t평균 점수")
     for dept, avgs in departments.items():
-        print(f"{dept} 학부 평균: {sum(avgs) / len(avgs):.2f}")
+        student_count = len(avgs)
+        avg_score = sum(avgs) / student_count
+        print(f"{dept}\t{student_count}\t{avg_score:.2f}")
 
-# 메뉴 6: 내림차순 정렬
+
+# 메뉴 6: 내림차순 정렬 (버블 정렬)
 def sort_by_average_desc():
-    studentList.sort(key=lambda x: x[-2], reverse=True)
-    print("평균 점수를 기준으로 내림차순 정렬 완료.")
+    n = len(studentList)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            # 평균 점수를 기준으로 비교
+            if studentList[j][-2] < studentList[j + 1][-2]:
+                # swap
+                studentList[j], studentList[j + 1] = studentList[j + 1], studentList[j]
     show_all_scores()
+
 
 # 메뉴 7: 새로운 학생 입력
 def add_new_student():
-    name = input("새로운 학생의 이름을 입력하세요: ")
-    dept = input("새로운 학생의 학부를 입력하세요: ")
-    scores = [int(input(f"{name}의 과목 {i+1} 점수를 입력하세요: ")) for i in range(3)]
+    name = input("이름 입력: ")
+    dept = input("학부 입력: ")
+
+    # 현재 학생 리스트에서 가장 많은 과목 수를 계산
+    current_subject_count = len(studentList[0]) - 4
+
+    # 새 학생의 점수 입력
+    scores = [int(input(f"{name}의 과목 {i+1} 점수를 입력하세요: ")) for i in range(current_subject_count)]
     studentList.append([name, dept] + scores)
     update_student_data()
+    print(f"{name} 학생이 추가되었습니다.")
+
 
 # 메인 프로그램
 def main():
