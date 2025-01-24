@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     cin >> a[i];
   }
 
-  for(int i = 1; i< n; i++)
+  for(int i = 1; i < n; i++)
   {
     int ip = i ;
     int iv = a[i];
@@ -36,9 +36,9 @@ int main(int argc, char* argv[])
     }
     for(int j = i; j > ip ; j--)
     {
-      a[i] = a[j-1];
+      a[j] = a[j-1];
     }
-    a[ip] =iv;
+    a[ip] = iv;
   }
   s[0] = a[0];
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
   for(int i = 0; i < n ; i++)
   {
-    sum += s[i];
+    sum = sum + s[i];
   }
 
   cout << sum;
