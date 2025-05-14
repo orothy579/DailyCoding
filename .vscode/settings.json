@@ -5,7 +5,11 @@
     "vector": "cpp",
     "ostream": "cpp",
     "string": "cpp",
-    "ios": "cpp"
+    "ios": "cpp",
+    "iosfwd": "cpp",
+    "editor.formatOnSave": "false",
+    "editor.formatOnSaveMode": "file",
+    "editor.defaultFormatter": "null"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
