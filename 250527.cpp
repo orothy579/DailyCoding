@@ -64,6 +64,11 @@ int main(int argc, char **argv)
 
   if (!minusPq.empty())
   {
+    if (zero != 0)
+    {
+      sum += zero * minusPq.top();
+      minusPq.pop();
+    }
     if (zero == 0)
     {
       sum += minusPq.top();
