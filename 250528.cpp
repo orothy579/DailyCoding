@@ -22,7 +22,7 @@ int main(int argc, char **argv)
   sort(a.begin(), a.end());
 
   int count = 0;
-  int end - 1;
+  int end = -1;
 
   for (int i = 0; i < n; i++)
   {
